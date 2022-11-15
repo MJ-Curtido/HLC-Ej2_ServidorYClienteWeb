@@ -20,12 +20,12 @@ public class Servidor {
         
         ServerSocket servidor = new ServerSocket(puerto);
         
-        for (int i = 1; ; i++) {
-            System.out.println("Escuchando en " + servidor.getLocalPort());
+        while (true) {
+            System.out.println("\n\nEscuchando en " + servidor.getLocalPort());
             
             Socket cliente = servidor.accept();
             
-            HiloServidor hilo = new HiloServidor(i, cliente);
+            HiloServidor hilo = new HiloServidor(cliente);
             hilo.start();
         }
     }
