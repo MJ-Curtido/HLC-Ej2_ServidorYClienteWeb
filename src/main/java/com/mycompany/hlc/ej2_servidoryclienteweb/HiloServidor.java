@@ -17,20 +17,20 @@ import java.util.logging.Logger;
  */
 class HiloServidor extends Thread {
     private Socket cliente;
-    private DataInputStream msgCliente;
-    private DataOutputStream msgServer;
+    private DataInputStream flujoEntrada;
+    private DataOutputStream flujoSalida;
 
     public HiloServidor(Socket cliente) throws IOException {
         this.cliente = cliente;
         
-        msgCliente = new DataInputStream(cliente.getInputStream());
-        msgServer = new DataOutputStream(cliente.getOutputStream());
+        flujoEntrada = new DataInputStream(cliente.getInputStream());
+        flujoSalida = new DataOutputStream(cliente.getOutputStream());
     }
 
     @Override
     public void run() {
         try {
-            String url = msgCliente.readUTF();
+            String url = flujoEntrada.readUTF();
             String path = "";
             
             String[] separadosPorBarras = url.split("/");

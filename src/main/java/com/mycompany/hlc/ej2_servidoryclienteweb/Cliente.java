@@ -30,14 +30,14 @@ public class Cliente {
 
         Socket cliente = new Socket(host, puertoRemoto);
         
-        DataOutputStream msgCliente = new DataOutputStream(cliente.getOutputStream());
-        msgCliente.writeUTF(url);
+        DataOutputStream flujoSalida = new DataOutputStream(cliente.getOutputStream());
+        flujoSalida.writeUTF(url);
         
-        DataInputStream msgServer = new DataInputStream(cliente.getInputStream());
-        System.out.println(msgServer.readUTF());
+        DataInputStream flujoEntrada = new DataInputStream(cliente.getInputStream());
+        System.out.println(flujoEntrada.readUTF());
         
-        msgCliente.close();
-        msgServer.close();
+        flujoSalida.close();
+        flujoEntrada.close();
         cliente.close();
     }
 }
