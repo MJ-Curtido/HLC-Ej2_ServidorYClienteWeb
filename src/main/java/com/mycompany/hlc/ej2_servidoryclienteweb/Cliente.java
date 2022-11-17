@@ -18,6 +18,7 @@ public class Cliente {
     public static void main(String[] args) throws IOException {
         Scanner leer = new Scanner(System.in);
         
+        //http://192.168.100.19:90/index.html
         System.out.println("Introduzca una url");
         String url = leer.next();
         
@@ -34,7 +35,12 @@ public class Cliente {
         flujoSalida.writeUTF(url);
         
         DataInputStream flujoEntrada = new DataInputStream(cliente.getInputStream());
-        System.out.println(flujoEntrada.readUTF());
+        if (flujoEntrada.readUTF() == "200") {
+            System.err.println(flujoEntrada.readUTF());
+        }
+        else {
+            System.err.println("Error 404");
+        }
         
         flujoSalida.close();
         flujoEntrada.close();
