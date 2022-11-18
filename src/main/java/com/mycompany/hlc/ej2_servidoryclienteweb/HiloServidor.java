@@ -40,25 +40,27 @@ class HiloServidor extends Thread {
             
             String[] separadosPorBarras = url.split("/");
             
-            for (int i = 3; i < separadosPorBarras.length; i++) {
-                path += "\\" + separadosPorBarras[i];
+            path = separadosPorBarras[3];
+            
+            if (separadosPorBarras.length > 3) {
+                for (int i = 4; i < separadosPorBarras.length; i++) {
+                    path += "/" + separadosPorBarras[i];
+                }
             }
             
-            System.out.println(path);
             
             try {
                 URL urlArchivo = getClass().getResource(path);
-                System.out.println(path);
                 archivo = new File(urlArchivo.getPath());
                 flujoSalida.writeUTF("200");
                 String texto = "";
                 
                 Scanner myReader = new Scanner(archivo);
                 while (myReader.hasNextLine()) {
-                    texto += myReader.nextLine();
+                    texto += "\n" + myReader.nextLine();
                 }
                 myReader.close();
-                
+                System.out.println(texto);
                 flujoSalida.writeUTF(texto);
             } catch (Exception e) {
                 flujoSalida.writeUTF("404");

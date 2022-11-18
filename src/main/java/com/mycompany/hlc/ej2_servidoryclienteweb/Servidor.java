@@ -16,7 +16,7 @@ import java.net.Socket;
 public class Servidor {
 
     public static void main(String[] args) throws IOException {
-        int puerto = 90;
+        int puerto = 6007;
         
         ServerSocket servidor = new ServerSocket(puerto);
         
