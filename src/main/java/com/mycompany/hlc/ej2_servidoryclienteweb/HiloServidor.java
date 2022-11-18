@@ -70,20 +70,4 @@ class HiloServidor extends Thread {
             Logger.getLogger(HiloServidor.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    public String mostrarTexto() {
-        String cadena = "";
-        try {
-            FileInputStream fIS = new FileInputStream(archivo);
-            System.out.println("file content: ");
-            int r = 0;
-            while ((r = fIS.read()) != -1) {
-                System.out.print((char) r);
-                cadena +=(char)r;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return cadena;
-    }
 }
